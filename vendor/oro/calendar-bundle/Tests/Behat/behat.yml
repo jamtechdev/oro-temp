@@ -1,0 +1,84 @@
+oro_behat_extension:
+  suites:
+    OroCalendarBundle:
+      contexts:
+        - Oro\Bundle\CalendarBundle\Tests\Behat\Context\FeatureContext
+        - Oro\Bundle\ConfigBundle\Tests\Behat\Context\FeatureContext
+        - Oro\Bundle\DataGridBundle\Tests\Behat\Context\GridContext
+        - Oro\Bundle\EmailBundle\Tests\Behat\Context\EmailContext
+        - Oro\Bundle\FormBundle\Tests\Behat\Context\FormContext
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroSearchBundle::SearchContext
+      paths:
+      - '@OroCalendarBundle/Tests/Behat/Features'
+  pages:
+    Default Calendar View:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Page\DefaultCalendarView
+      route: oro_calendar_view_default
+
+  elements:
+    Calendar:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\Calendar
+      selector: "div[id^='calendar']"
+    Calendar Event:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\CalendarEvent
+      selector: '.fc-event'
+    Calendar Event Info:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\CalendarEventInfo
+      selector: '.ui-dialog'
+    First All Day Cell:
+      selector:
+        type: 'xpath'
+        locator: '(//*[contains(@class, "fc-week")]/descendant::*[contains(@class, "fc-content-skeleton")]/descendant::td)[2]'
+    Multiday Event:
+      selector:
+        type: 'xpath'
+        locator: '//td[contains(@class, "fc-event-container")][@colspan]/*[contains(@class, "fc-event")]'
+    Event Form:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\EventForm
+      selector: 'form[name="oro_calendar_event_form"]'
+    Start Datetime:
+      selector: '[name="oro_calendar_event_form[start]"]'
+    End Datetime:
+      selector: '[name="oro_calendar_event_form[end]"]'
+    All Day Event:
+      selector: '[name="oro_calendar_event_form[allDay]"]'
+    EndsRecurrence:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\EventRecurrence\End
+      selector: 'div[data-name="recurrence-ends"]'
+    DailyRecurrence:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\EventRecurrence\Daily
+      selector: 'div[data-name="recurrence-daily"]'
+    WeeklyRecurrence:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\EventRecurrence\Weekly
+      selector: 'div[data-name="recurrence-weekly"]'
+    MonthlyRecurrence:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\EventRecurrence\Monthly
+      selector: 'div[data-name="recurrence-monthly"]'
+    YearlyRecurrence:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\EventRecurrence\Yearly
+      selector: 'div[data-name="recurrence-yearly"]'
+    Empty slot:
+      selector:
+        locator: '//tr[@data-time="10:30:00"]'
+        type: xpath
+    Select Expected Close Date:
+      selector:
+        locator: '//input[@placeholder="Choose a date"]'
+        type: xpath
+    Today:
+      selector:
+        locator: '//button[@class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all"]'
+        type: xpath
+    My Calendar Choose Color Menu:
+      class: Oro\Bundle\CalendarBundle\Tests\Behat\Element\MyCalendarChooseColorMenu
+      selector: 'li[data-calendar-alias="user"] button.context-menu-button'
+    Calendar Activity Item:
+      selector:
+        locator: '//div[@class="accordion-heading"]'
+        type: xpath
+    System Calendars Grid:
+      selector: 'div[data-page-component-name="system-calendar-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+    Event in calendar March 31:
+      selector: '.fc-event-container span.fc-title:contains("All-Day event with repeats 31")'

@@ -1,0 +1,26 @@
+oro_behat_extension:
+  elements:
+    Opportunity Transition Form:
+      selector: '[name="oro_workflow_transition"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Close Revenue: "oro_workflow_transition[close_revenue][value]"
+    Customer Related Account:
+      selector:
+        locator: '//div[@class="select2-result-label"]/span[contains(text(),"Customer")]'
+        type: xpath
+
+  suites:
+    OroQuoteSalesBridgeBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\FixturesContext
+        - OroDataGridBundle::GridContext
+        - OroFormBundle::FormContext
+        - OroSalesBundle::SalesContext
+        - OroSalesBundle::FeatureContext
+        - OroShippingBundle::FeatureContext
+        - OroSecurityBundle::ACLContext
+      paths:
+        - '@OroQuoteSalesBridgeBundle/Tests/Behat/Features'

@@ -1,0 +1,26 @@
+{% set isFreeFormProduct = record.getValue('productName') is empty and record.getValue('freeFormProduct') is not empty %}
+{% set product = record.getValue('product') %}
+
+<h3 class="product-item__title product-item__title--in-cart">
+    {% if isFreeFormProduct %}
+        {{ record.getValue('freeFormProduct') }}
+    {% elseif product %}
+        {% if record.getValue('parentProduct') %}
+            {% set product = record.getValue('parentProduct') %}
+        {% endif %}
+        {% set routeOptions = {'id': product.id} %}
+        {% if product.isConfigurable %}
+            {% set routeOptions = routeOptions|merge({'variantProductId': record.getRootEntity().product.id}) %}
+        {% endif %}
+        <a class="product-item__link-in-cart" href="{{ path('oro_product_frontend_product_view', routeOptions) }}">{{ product.names|localized_value|e }}</a>
+    {% else %}
+        {{ record.getValue('productName') }}
+    {% endif %}
+</h3>
+
+{% if not isFreeFormProduct %}
+    <div>{{ 'oro.product.item_number.label'|trans }}: <span class="red">{{ record.getValue('productSku') }}</span></div>
+    {% for field in record.getValue('productVariantFields') %}
+        <div>{{ field.label|trans }}: {{ field.value }}</div>
+    {% endfor %}
+{% endif %}

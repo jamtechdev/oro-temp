@@ -1,0 +1,75 @@
+oro:
+    oauth2server:
+        client:
+            entity_label: OAuth Application
+            entity_storefront_label: Storefront OAuth Application
+            entity_plural_label: OAuth Applications
+            id:
+                label: ID
+                description: The entity identifier.
+            name:
+                label: Application Name
+                description: The name of the application.
+            active:
+                label: Active
+                description: Whether the application is active or not.
+                statuses:
+                    active: Active
+                    inactive: Inactive
+            grants:
+                label: Grants
+                description: The grant types supported by the application. For details see <a href="https://oauth.net/2/grant-types/" target="_blank" class="no-hash">OAuth 2.0 Grant Types</a>.
+            scopes:
+                label: Scopes
+                description: The scopes to which the application can have access.
+            identifier:
+                label: Client ID
+                description: A string that unique identifies the application.
+            secret:
+                label: Client Secret
+                description: A hash of the secret that is used for the application authentication.
+            salt:
+                label: Client Secret Salt
+                description: A string that is used as a salt to encode the client secret.
+            owner_entity_class:
+                label: Owner Entity Class
+                description: The class of the entity the application belongs to.
+            owner_entity_id:
+                label: Owner Entity ID
+                description: The ID of the entity the application belongs to.
+            organization:
+                label: Organization
+                description: The organization the client issued to.
+            redirect_uris:
+                label: Redirect URIs
+                description: URIs to which it is allowed to redirect the user back to.
+            frontend:
+                label: Store front
+                description: Indicates that client should work with the storefront.
+            action:
+                add: Add Application
+                activate: Activate
+                deactivate: Deactivate
+            dialog:
+                create_title: Create OAuth Application
+                edit_title: Edit OAuth Application
+            last_used_at:
+                label: Last Used At
+                description: The date when the application token was last recieved.
+            created_message: OAuth application has been created.
+            updated_message: OAuth application has been updated.
+            created_warning_message: Please copy <strong>Client Secret</strong> and save it somewhere safe. For security reasons, we cannot show it to you again.
+            datagrid:
+                entity_hint: Applications
+        scopes:
+            all: all
+        grant_types:
+            authorization_code: Authorization Code
+            implicit: Implicit
+            password: Password
+            client_credentials: Client Credentials
+            refresh_token: Refresh Token
+        no_encryption_keys: OAuth authorization is not available as encryption keys configuration was not complete. Please contact your administrator.
+        menu:
+            backoffice_oauth_application.label: OAuth Applications
+            frontend_oauth_application.label: Storefront OAuth Applications

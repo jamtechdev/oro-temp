@@ -1,0 +1,22 @@
+oro_behat_extension:
+  suites:
+    OroImapBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroFormBundle::FormContext
+        - OroConfigBundle::FeatureContext
+      paths:
+        - '@OroImapBundle/Tests/Behat/Features'
+
+  elements:
+    EmailSynchronizationSettingsSystemConfigForm:
+      selector: "div[id^='configuration-options-block']"
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Enable SMTP: 'user_email_configuration[oro_email___user_mailbox][value][imapConfiguration][useSmtp]'
+          SMTP Host: 'user_email_configuration[oro_email___user_mailbox][value][imapConfiguration][smtpHost]'
+          SMTP Port: 'user_email_configuration[oro_email___user_mailbox][value][imapConfiguration][smtpPort]'
+          Encryption: 'user_email_configuration[oro_email___user_mailbox][value][imapConfiguration][smtpEncryption]'
+          User: 'user_email_configuration[oro_email___user_mailbox][value][imapConfiguration][user]'
+          Password: 'user_email_configuration[oro_email___user_mailbox][value][imapConfiguration][password]'

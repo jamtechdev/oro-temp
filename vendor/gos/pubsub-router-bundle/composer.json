@@ -1,0 +1,34 @@
+{
+    "name": "gos/pubsub-router-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony PubSub Router Bundle",
+    "keywords": ["PubSub Bundle", "PubSub", "Bundle", "Redis", "WAMP", "ZMQ"],
+    "homepage": "https://github.com/GeniusesOfSymfony/PubSubRouterBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Johann Saunier",
+            "email": "johann_27@hotmail.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "doctrine/cache": "~1.4",
+        "symfony/console": "~3.4|~4.0",
+        "symfony/framework-bundle": "~3.4|~4.0"
+    },
+    "require-dev":{
+        "phpunit/phpunit": "^4.8.35"
+    },
+    "autoload": {
+        "psr-4": { "Gos\\Bundle\\PubSubRouterBundle\\": "" }
+    },
+    "autoload-dev" : {
+      "psr-4": { "Gos\\Bundle\\PubSubRouterBundle\\Tests\\" : "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.3.x-dev"
+        }
+    }
+}

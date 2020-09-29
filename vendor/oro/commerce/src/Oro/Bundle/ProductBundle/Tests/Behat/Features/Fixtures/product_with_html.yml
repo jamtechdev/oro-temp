@@ -1,0 +1,35 @@
+Oro\Bundle\OrganizationBundle\Entity\BusinessUnit:
+  businessUnit:
+    name: Common Business Unit
+    organization: '@organization'
+
+Oro\Bundle\ProductBundle\Entity\ProductUnitPrecision:
+    precision1:
+        unit: '@each'
+        precision: '1'
+
+Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue:
+    locvalue1:
+        string: 'ProductWithHTML'
+    localNewCategory:
+        string: 'NewCategory'
+
+Oro\Bundle\CatalogBundle\Entity\Category:
+    categoryLightingProducts:
+        __calls:
+            - addTitle: ['@localNewCategory']
+            - setParentCategory: ['@root_category']
+            - addProduct: ['@productWithHtml']
+
+Oro\Bundle\ProductBundle\Entity\Product:
+    productWithHtml:
+        sku: '\<script\>alert(''SKU'');\</script\>SKU1'
+        inventoryStatus: '@enumInventoryStatuses'
+        status: 'enabled'
+        organization: '@organization'
+        owner: '@businessUnit'
+        primaryUnitPrecision: '@precision1'
+        unitPrecisions: []
+        attributeFamily: '@defaultProductFamily'
+        __calls:
+            - addName: ['@locvalue1']

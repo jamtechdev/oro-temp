@@ -1,0 +1,16 @@
+{
+    "autoload-dev": {
+        "classmap": [
+            "../../migrations"
+        ]
+    },
+    "require-dev": {
+        "illuminate/database": "~5.5.0",
+        "illuminate/filesystem": "~5.5.0",
+        "theofidry/composer-inheritance-plugin": "^1.0"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
+    }
+}

@@ -1,0 +1,97 @@
+oro_behat_extension:
+    suites:
+        OroRFPBundle:
+            contexts:
+                - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+                - OroDataGridBundle::GridContext
+                - OroFormBundle::FormContext
+                - OroWorkflowBundle::FeatureContext
+                - OroApplicationBundle::CommerceMainContext
+                - OroShoppingListBundle::FeatureContext
+                - OroShoppingListBundle::ShoppingListContext
+                - OroRFPBundle::FeatureContext
+                - OroConfigBundle::FeatureContext
+                - OroNavigationBundle::FeatureContext
+                - OroUIBundle::TypeaheadContext
+                - OroProductBundle::FeatureContext
+                - OroLocaleBundle::LocalizationContext
+                - OroFrontendLocalizationBundle::LocalizationSwitcherContext
+                - OroProductBundle::QuickOrderFormContext
+                - OroEmailBundle::EmailContext
+                - OroShippingBundle::SingleCurrencyContext
+                - OroCustomerBundle::FrontendGridContext
+                - OroQueryDesignerBundle::QueryDesignerContext
+            paths:
+                - '@OroRFPBundle/Tests/Behat/Features'
+
+    elements:
+        RFQ:
+            class: Oro\Bundle\RFPBundle\Tests\Behat\Element\RequestForQuote
+            selector: '.page-content'
+
+        RequestForQuote:
+            class: Oro\Bundle\RFPBundle\Tests\Behat\Element\RequestForQuote
+            selector: '.page-content'
+
+        RequestForQuoteTitle:
+            selector: 'span.page-title__text'
+
+        RequestForQuoteFlashMessage:
+            selector: '#flash-messages div.notification-flash__text'
+
+        RequestMoreInformationPopupForm:
+            class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+            selector: div.ui-dialog form
+
+        Customer Users RFQ:
+            selector: "div[id^='grid-customer-user-view-rfq-grid']"
+            class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+
+        RequestNotesBlock:
+            selector: .page-content div.notes
+        TargetPriceField:
+            selector: 'input[name="oro_rfp_frontend_request[requestProducts][0][requestProductItems][0][price][value]"]'
+        LineItemDropdown:
+            selector: '.line-item-form .dropdown-toggle'
+
+        Request Notes:
+            selector: 'textarea[name="oro_rfp_frontend_request[note]"]'
+
+        RFQ Create Order:
+            selector: '.navigation a:contains("Create Order")'
+
+        Request Form:
+            selector: 'form[name^="oro_rfp_request"]'
+            class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+            options:
+                mapping:
+                    Line Item Product:
+                        type: 'css'
+                        locator: 'input[name="oro_rfp_request[requestProducts][0][product]"]'
+                        element: Select2Entity
+                    Do Not Ship Later Than:
+                        type: 'css'
+                        locator: 'input[name^="date_selector_oro_sale_quote_shipUntil"]'
+
+        Frontend Request Form:
+            selector: 'form[name^="oro_rfp_frontend_request"]'
+            class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+            options:
+                mapping:
+                    Do Not Ship Later Than:
+                        type: 'css'
+                        locator: 'input[name^="date_selector_oro_rfp_frontend_request_shipUntil"]'
+
+        Requests For Quote tab:
+            selector:
+              type: 'xpath'
+              locator: '//a[text()="Requests For Quote"]'
+
+    pages:
+        RequestViewBackendPage:
+            class: Oro\Bundle\RFPBundle\Tests\Behat\Page\RequestViewPage
+            route: oro_rfp_request_view
+
+        RequestViewFrontendPage:
+            class: Oro\Bundle\RFPBundle\Tests\Behat\Page\RequestViewPage
+            route: oro_rfp_frontend_request_view

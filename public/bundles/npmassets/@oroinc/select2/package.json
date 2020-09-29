@@ -1,0 +1,27 @@
+{
+  "name": "@oroinc/select2",
+  "version": "3.4.1",
+  "description": "Select2 is a jQuery-based replacement for select boxes.",
+  "main": "select2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/select2/select2.git"
+  },
+  "keywords": [
+    "select2",
+    "dropdown"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/select2/select2/issues"
+  },
+  "homepage": "https://github.com/select2/select2#readme"
+
+,"_resolved": "https://registry.npmjs.org/@oroinc/select2/-/select2-3.4.1.tgz"
+,"_integrity": "sha512-R+MhYCMXwEirRa/+gg3HwjUnHEEdVu7XoWh3OrmvNhIpYzBxSX6gAr8xihEe3pFSx7UNitSP5R+KQ3PZHKLtBA=="
+,"_from": "@oroinc/select2@3.4.1"
+}

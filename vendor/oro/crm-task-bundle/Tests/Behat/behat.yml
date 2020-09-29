@@ -1,0 +1,33 @@
+oro_behat_extension:
+  elements:
+    My Tasks Choose Color Menu:
+      class: Oro\Bundle\TaskBundle\Tests\Behat\Element\MyTasksChooseColorMenu
+      selector: 'li[data-calendar-alias="tasks"] a.context-menu-button'
+
+    Tasks Grid:
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+      selector: 'div[data-page-component-name="tasks-grid"]'
+
+    User Tasks Grid:
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+      selector: 'div[data-page-component-name="user-tasks-grid"]'
+
+  suites:
+    OroTaskBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\FixturesContext
+        - OroSecurityBundle::ACLContext
+        - OroUserBundle::FeatureContext
+        - OroSalesBundle::SalesContext
+        - OroDataGridBundle::GridContext
+        - OroFormBundle::FormContext
+        - OroMagentoBundle::FeatureContext
+        - OroQueryDesignerBundle::QueryDesignerContext
+        - OroUIBundle::ContextSelectorContext
+        - OroConfigBundle::FeatureContext
+        - OroNavigationBundle::FeatureContext
+        - OroLocaleBundle::LocalizationContext
+        - OroActivityListBundle::ActivityContext
+      paths:
+        - '@OroTaskBundle/Tests/Behat/Features'

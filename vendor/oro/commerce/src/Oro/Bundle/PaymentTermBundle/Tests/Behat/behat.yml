@@ -1,0 +1,34 @@
+oro_behat_extension:
+  elements:
+    Payment Term Integration Form:
+      selector: 'form[name="oro_integration_channel_form"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Label: 'oro_integration_channel_form[transport][labels][values][default]'
+          Short Label: 'oro_integration_channel_form[transport][shortLabels][values][default]'
+
+    Payment Term Create New:
+      selector:
+        locator: '//label[text()="Payment Term"]/../..//button[contains(@class,"entity-create-btn")]'
+        type: xpath
+
+    Payment Term Form:
+      selector: 'form[name="oro_payment_term"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Label: 'oro_payment_term[label]'
+  suites:
+    OroPaymentTermBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroApplicationBundle::CommerceMainContext
+        - OroCheckoutBundle::FeatureContext
+        - OroConfigBundle::FeatureContext
+        - OroDataGridBundle::GridContext
+        - OroFormBundle::FormContext
+        - OroProductBundle::FeatureContext
+        - OroShoppingListBundle::ShoppingListContext
+      paths:
+        - '@OroPaymentTermBundle/Tests/Behat/Features'

@@ -1,0 +1,4 @@
+oro_behat_extension:
+  elements:
+    Help Icon:
+      selector: a.help

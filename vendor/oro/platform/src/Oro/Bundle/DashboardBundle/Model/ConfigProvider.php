@@ -1,0 +1,193 @@
+<?php
+
+namespace Oro\Bundle\DashboardBundle\Model;
+
+use Oro\Bundle\DashboardBundle\Event\WidgetConfigurationLoadEvent;
+use Oro\Bundle\DashboardBundle\Exception\InvalidConfigurationException;
+use Oro\Component\Config\Cache\PhpArrayConfigProvider;
+use Oro\Component\Config\Loader\CumulativeConfigLoader;
+use Oro\Component\Config\Loader\CumulativeConfigProcessorUtil;
+use Oro\Component\Config\Loader\YamlCumulativeFileLoader;
+use Oro\Component\Config\ResourcesContainerInterface;
+use Oro\Component\PhpUtils\ArrayUtil;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+
+/**
+ * The provider for dashboards configuration
+ * that is loaded from "Resources/config/oro/dashboards.yml" files.
+ */
+class ConfigProvider extends PhpArrayConfigProvider
+{
+    private const CONFIG_FILE = 'Resources/config/oro/dashboards.yml';
+
+    private const DASHBOARDS     = 'dashboards';
+    private const WIDGETS        = 'widgets';
+    private const WIDGETS_CONFIG = 'widgets_configuration';
+    private const CONFIG         = 'configuration';
+    private const WIDGET         = 'widget';
+    private const ROUTE_PARAMS   = 'route_parameters';
+    private const ITEMS          = 'items';
+    private const POSITION       = 'position';
+
+    /** @var EventDispatcherInterface */
+    private $eventDispatcher;
+
+    /**
+     * @param string                   $cacheFile
+     * @param bool                     $debug
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(
+        string $cacheFile,
+        bool $debug,
+        EventDispatcherInterface $eventDispatcher
+    ) {
+        parent::__construct($cacheFile, $debug);
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDashboardConfigs(): array
+    {
+        $configs = $this->doGetConfig();
+
+        return $configs[self::DASHBOARDS];
+    }
+
+    /**
+     * @param string $dashboardName
+     *
+     * @return bool
+     */
+    public function hasDashboardConfig(string $dashboardName): bool
+    {
+        $configs = $this->doGetConfig();
+
+        return isset($configs[self::DASHBOARDS][$dashboardName]);
+    }
+
+    /**
+     * @param string $dashboardName
+     *
+     * @return array
+     *
+     * @throws InvalidConfigurationException
+     */
+    public function getDashboardConfig(string $dashboardName): array
+    {
+        $configs = $this->doGetConfig();
+        if (!isset($configs[self::DASHBOARDS][$dashboardName])) {
+            throw new InvalidConfigurationException($dashboardName);
+        }
+
+        return $configs[self::DASHBOARDS][$dashboardName];
+    }
+
+    /**
+     * @return array
+     */
+    public function getWidgetConfigs(): array
+    {
+        $configs = $this->doGetConfig();
+
+        return $configs[self::WIDGETS];
+    }
+
+    /**
+     * @param string $widgetName
+     *
+     * @return bool
+     */
+    public function hasWidgetConfig(string $widgetName): bool
+    {
+        $configs = $this->doGetConfig();
+
+        return isset($configs[self::WIDGETS][$widgetName]);
+    }
+
+    /**
+     * @param string $widgetName
+     *
+     * @return array
+     *
+     * @throws InvalidConfigurationException
+     */
+    public function getWidgetConfig(string $widgetName): array
+    {
+        $configs = $this->doGetConfig();
+        if (!isset($configs[self::WIDGETS][$widgetName])) {
+            throw new InvalidConfigurationException($widgetName);
+        }
+
+        $widgetConfig = $configs[self::WIDGETS][$widgetName];
+        if ($this->eventDispatcher->hasListeners(WidgetConfigurationLoadEvent::EVENT_NAME)) {
+            $event = new WidgetConfigurationLoadEvent($widgetConfig);
+            $this->eventDispatcher->dispatch(WidgetConfigurationLoadEvent::EVENT_NAME, $event);
+            $widgetConfig = $event->getConfiguration();
+        }
+
+        return $widgetConfig;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doLoadConfig(ResourcesContainerInterface $resourcesContainer)
+    {
+        $configs = [];
+        $configLoader = new CumulativeConfigLoader(
+            'oro_dashboard',
+            new YamlCumulativeFileLoader(self::CONFIG_FILE)
+        );
+        $resources = $configLoader->load($resourcesContainer);
+        foreach ($resources as $resource) {
+            if (!empty($resource->data[Configuration::ROOT_NODE_NAME])) {
+                $configs[] = $resource->data[Configuration::ROOT_NODE_NAME];
+            }
+        }
+
+        $processedConfig = CumulativeConfigProcessorUtil::processConfiguration(
+            self::CONFIG_FILE,
+            new Configuration(),
+            $configs
+        );
+
+        $this->prepareWidgets(
+            $processedConfig[self::WIDGETS],
+            $processedConfig[self::WIDGETS_CONFIG]
+        );
+        unset($processedConfig[self::WIDGETS_CONFIG]);
+
+        return $processedConfig;
+    }
+
+    /**
+     * @param array $widgets
+     * @param array $defaultConfig
+     */
+    private function prepareWidgets(array &$widgets, array $defaultConfig): void
+    {
+        foreach ($widgets as $widgetName => &$widget) {
+            $widget[self::CONFIG] = \array_merge_recursive($defaultConfig, $widget[self::CONFIG]);
+            $widget[self::ROUTE_PARAMS][self::WIDGET] = $widgetName;
+            if (empty($widget[self::ITEMS])) {
+                unset($widget[self::ITEMS]);
+            } else {
+                $this->sortItemsByPosition($widget[self::ITEMS]);
+            }
+        }
+    }
+
+    /**
+     * @param array $items
+     */
+    private function sortItemsByPosition(array &$items): void
+    {
+        ArrayUtil::sortBy($items, false, self::POSITION);
+        foreach ($items as &$item) {
+            unset($item[self::POSITION]);
+        }
+    }
+}

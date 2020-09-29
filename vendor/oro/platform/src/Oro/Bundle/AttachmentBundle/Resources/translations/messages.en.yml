@@ -1,0 +1,128 @@
+oro:
+    attachment:
+        entity_label:        Attachment
+        entity_plural_label: Attachments
+        entity_description:  Attachment represents an uploaded file added to a record.
+
+        id.label:            Id
+        comment:
+            label:           Comment
+            description:     Attachment comment body content
+        owner.label:         Owner
+        organization.label:  Organization
+
+        block_titles:
+            attachments.label:  Attachments
+
+        enabled:              Enable attachments
+        maxsize:              Max allowed file size, Mb
+        mimetypes:            Allowed MIME types
+        mimetypes.tooltip:    The list of allowed MIME types.
+        mimetypes.placeholder: Please select MIME type...
+
+        max_size.tooltip:     Max allowed file size to upload in MB.
+        thumb_width.tooltip:  Thumbnail width in pixels.
+        thumb_height.tooltip: Thumbnail height in pixels.
+
+        file:
+            description:             The file that the attachment contains.
+            label:                   File
+            file.description:        Files attached to emails, comments, notes or other entity records.
+            file.label:              File
+            entity_label:            File
+            entity_plural_label:     Files
+            entity_description:      Files attached to emails, comments, notes or other entity records.
+            id.label:                Id
+            uuid:
+                label:               UUID
+                description:         Universally Unique Identifier of the file.
+            filename.label:          File name
+            original_filename:
+                label:               Original file name
+                description:         The name of the file uploaded to the system.
+            filepath.label:          File path
+            owner:
+                label:               Owner
+                description:         An user who is the owner of the file.
+            extension.label:         Extension
+            delete_file.label:       Delete
+            file_size:
+                label:               File size
+                description:         The size of a file in bytes.
+            mime_type:
+                label:               Mime type
+                description:         A media type and subtype of the file.
+            content:
+                label:               Content
+                description:         The content of the file as a string.
+            parent_entity_class:
+                label:               Parent entity class
+                description:         The class of the entity to which this file belongs.
+            parent_entity_id:
+                label:               Parent entity id
+                description:         The ID of the entity to which this file belongs.
+            parent_entity_field_name:
+                label:               Parent entity field name
+                description:         The field name where this file is stored of the entity to which this file belongs.
+
+            uploaded_by.label: Uploaded By
+            name.label: Name
+            image.label: Image
+            image_width.label: Width
+            image_height.label: Height
+
+        fileitem:
+            entity_label: File Item
+            entity_plural_label: File Items
+            id.label: Id
+            file.label: File
+            image.label: Image
+            sort_order.label: Sort Order
+
+            file:
+                add.label: Add File
+                plural_label: Files
+            image:
+                add.label: Add Image
+                plural_label: Images
+
+        config:
+            file_size_settings.label: File Size Settings
+            file_size.label:     File Size (MB)
+            thumb_width.label:   Thumbnail width
+            thumb_height.label:  Thumbnail height
+            attachment.label:    Upload Settings
+            mime_types.label:    MIME Types
+            upload_file_mime_types.label:  File MIME types
+            upload_file_mime_types.tooltip: List of MIME file types that are permitted for upload.
+            upload_image_mime_types.label: Image MIME types
+            upload_image_mime_types.tooltip: List of MIME image types that are permitted for upload.
+
+            max_number_of_files:
+                label: 'Maximum Number Of Files'
+                tooltip: 'Maximum Number Of Files'
+
+        action:
+            add:                 Add attachment
+            update:              Update attachment
+            saved:               Attachment saved successfully
+            button:
+                update:          Update
+                delete:          Delete
+
+        formatter:
+            image_link:
+                default: N/A
+
+        frontend:
+            file:
+                file.label: File
+                mime_type.label: Type
+                file_size.label: Size
+                created_at.label: Created At
+
+    entity_extend:
+        form:
+            data_type:
+                file:  File
+                image: Image

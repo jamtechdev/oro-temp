@@ -1,0 +1,22 @@
+oro_behat_extension:
+  elements:
+    Columns:
+        selector: "div[id$='-column-form']"
+    Column Label:
+        selector:
+            locator: '//input[contains(@name, "[column][label]")]'
+            type: xpath
+    Column Function:
+      selector:
+        locator: '//select[contains(@name, "[column][func]")]'
+        type: xpath
+    Grouping:
+        selector: "div[id$='-grouping-form']"
+    Date Field:
+        selector: "div[id*='dateGrouping_fieldName']"
+
+    ActiveFilterTypeSelector:
+        selector: '.condition-item .active-filter a.dropdown-toggle'
+
+    ActiveFilterValue:
+        selector: '.condition-item .active-filter input[name="value"]'

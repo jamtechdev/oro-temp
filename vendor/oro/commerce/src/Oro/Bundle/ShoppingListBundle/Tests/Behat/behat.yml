@@ -1,0 +1,270 @@
+oro_behat_extension:
+  elements:
+    ShoppingList:
+      class: Oro\Bundle\ShoppingListBundle\Tests\Behat\Element\ShoppingList
+      selector: '#shopping_list_view_container_content'
+
+    ShoppingListWidgetContainer:
+      selector: 'div.shopping-list-widget__container'
+
+    ShoppingListWidgetItemName:
+      selector: 'div.shopping-list-dropdown__item span.shopping-list-dropdown__name-inner'
+
+    ShoppingListTitle:
+      selector: 'h1.cart-order-title span'
+
+    ShoppingListEdit:
+      selector: '.shopping-lists__area-trigger'
+
+    ShoppingListAdd:
+      selector: '.add-to-shopping-list-button'
+
+    ShoppingListForm:
+      selector: '.shopping-lists-popup__item'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          List: "list"
+          Quantity: 'oro_product_frontend_line_item[quantity]'
+          Unit: 'oro_product_frontend_line_item[unit]'
+
+    NewShoppingListNameField:
+      selector: '[name="oro_shopping_list_type[label]"]'
+
+    ItemAdd:
+      selector: '[data-role="add-form-accept"]'
+
+    ItemEdit:
+      selector: '[data-role="edit"]'
+
+    ItemEditUnit:
+      selector: '.shopping-lists-modify .select2-choice'
+
+    ItemDisabled:
+      selector: '#select2-drop .select2-disabled .select2-result-label:contains("set")'
+
+    Edit Shopping List Label:
+      selector:
+        locator: '//button[@data-title="Edit Shopping List Label"]'
+        type: xpath
+
+    ShoppingListProductTableRow:
+      class: Oro\Bundle\ShoppingListBundle\Tests\Behat\Element\ProductTableRow
+      selector: '.shopping-list-line-items .shopping-list-line-items__item-wrapper'
+
+    Shopping List Label Input:
+      selector: '#title-inline-editable .inline-view-editor__input-wrap > input'
+
+    Shopping List Line Items Table:
+      class: Oro\Bundle\ShoppingListBundle\Tests\Behat\Element\ProductTable
+      selector: '#shopping_list_view_container_content > div.cart-table .shopping-list-line-items'
+
+    Shopping List Line Item Product Attribute:
+      selector: 'div.shopping-list-line-items__description > div'
+
+    ShoppingListLineItemsTableHeaderLabel:
+      selector: 'div.shopping-list-line-items__header-label'
+
+    ShoppingListLineItem:
+      class: Oro\Bundle\ShoppingListBundle\Tests\Behat\Element\ShoppingListLineItem
+      selector: '.shopping-list-line-items__item-wrapper'
+
+    Shopping List Line Item 1 Form:
+      class: 'Oro\Bundle\TestFrameworkBundle\Behat\Element\Form'
+      selector:
+        locator: '(//div[@class=" shopping-list-line-items__item"])[1]//form'
+        type: xpath
+      options:
+        mapping:
+          Quantity: 'product_qty'
+          Unit: 'product_unit'
+
+    Shopping List Line Item 2 Form:
+      class: 'Oro\Bundle\TestFrameworkBundle\Behat\Element\Form'
+      selector:
+        locator: '(//div[@class=" shopping-list-line-items__item"])[2]//form'
+        type: xpath
+      options:
+        mapping:
+          Quantity: 'product_qty'
+          Unit: 'product_unit'
+
+    Shopping List Line Item Error:
+      selector:
+        type: css
+        locator: 'div.shopping-list-line-items__error'
+
+    Shopping List Line Item 1 Quantity:
+      selector:
+        type: css
+        locator: 'form.product__qty-container:first-child input[name=product_qty]'
+
+    ShoppingListLineItemProductSku:
+      selector:
+          type: 'xpath'
+          locator: '//span[@class="product-item__sku-value"]'
+
+    Shopping List Line Item Product View Link:
+      selector: 'h3.product-item__title a'
+
+    Shopping List Line Item Product Price:
+      selector: 'div.line-item-price span[data-name="price-value"]'
+
+    Shopping List Dropdown:
+      selector:
+        type: 'xpath'
+        locator: '//a[contains(@class, "add-to-shopping-list-button")]/following-sibling::a[contains(@class, "dropdown-toggle")]'
+
+    Create New Shopping List:
+      selector: 'a.add-to-shopping-list-button[title="Create New Shopping List"]'
+
+    Update Product B Shopping List:
+      selector: 'a.add-to-shopping-list-button[title="Update Product B Shopping List"]'
+
+    Remove From Shopping List:
+      selector: 'a.add-to-shopping-list-button[title="Remove From Shopping list"]'
+
+    FrontendLineItemForm:
+      selector: 'form[id^="oro_product_frontend_line_item"]'
+      class: 'Oro\Bundle\TestFrameworkBundle\Behat\Element\Form'
+      options:
+        mapping:
+          Quantity:
+            type: css
+            locator: 'input[name="oro_product_frontend_line_item[quantity]"]'
+            element: TypeableInput
+          Unit:
+            type: css
+            locator: 'select[name="oro_product_frontend_line_item[unit]"]'
+
+    Configurable Product Form:
+      selector: 'form[id^="oro_product_product_variant_frontend_variant_field"]'
+      class: 'Oro\Bundle\TestFrameworkBundle\Behat\Element\Form'
+      options:
+        mapping:
+          Attributes_1:
+            type: 'xpath'
+            locator: '//*[starts-with(@id,"oro_product_product_variant_frontend_variant_field_Attribute_1")]'
+          Attributes_2:
+            type: 'xpath'
+            locator: '//*[starts-with(@id,"oro_product_product_variant_frontend_variant_field_Attribute_2")]'
+          Attributes_3:
+            type: 'xpath'
+            locator: '//*[starts-with(@id,"oro_product_product_variant_frontend_variant_field_Attribute_3")]'
+          Color:
+            type: 'xpath'
+            locator: '//*[starts-with(@id,"oro_product_product_variant_frontend_variant_field_Color")]'
+
+    LineItemQuantity:
+      selector:
+        type: 'xpath'
+        locator: '//input[@name="oro_product_frontend_line_item[quantity]"]'
+
+    FrontendLineItemForm > Quantity:
+      selector:
+        type: 'css'
+        locator: "input[name='oro_product_frontend_line_item[quantity]']"
+
+    ShoppingListWidget:
+      selector: '.shopping-list-widget'
+
+    Shopping Cart:
+      selector:
+        type: xpath
+        locator: '//div[@class="cart-widget__content"]'
+
+    Shopping List Limit Form:
+      selector: 'form[name="shopping_list"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Shopping List Limit Default: 'shopping_list[oro_shopping_list___shopping_list_limit][use_parent_scope_value]'
+
+    Subtotals:
+      class: Oro\Bundle\ShoppingListBundle\Tests\Behat\Element\Subtotals
+      selector: '.order-checkout-widget__container'
+
+    In Shopping List:
+      selector: 'a.shopping-lists__area-trigger'
+
+    Add to Shopping List:
+      selector: 'a.add-to-shopping-list-button[title="Add to Shopping List"]'
+
+    Add a Note to This Shopping List:
+      selector: 'input[name=addANote]+.custom-checkbox__icon'
+
+    Create Order:
+      selector: '.order-checkout-widget a[title="Create Order"]'
+
+    ShoppingListEditTitleField:
+      selector: '#title-inline-editable input[name="value"]'
+
+    EditShoppingListLabel:
+      selector: '#title-inline-editable [data-role="start-editing"]'
+
+    View Shopping List Details:
+      selector: 'span.shopping-list-dropdown__info'
+
+    Product Quantity:
+      selector: 'input[name="oro_product_frontend_line_item[quantity]"]'
+
+    Shirt_102 Matrix Grid Order Form:
+      selector: 'form[name="matrix_collection"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Green Yes Quantity: 'matrix_collection[rows][0][columns][1][quantity]'
+
+    Remove Line Item:
+      selector: 'button.item-remove'
+
+    Shopping list Line items Grid:
+      selector: 'div[data-page-component-name="shopping-list-line-items-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+
+    Default Guest Shopping List Owner:
+      selector: 'input[name="shopping_list[oro_shopping_list___default_guest_shopping_list_owner][value]"]'
+      class: Oro\Bundle\FormBundle\Tests\Behat\Element\Select2Entity
+
+    Customer Field:
+      selector: '.select2-container.input-widget'
+
+    Customer Select Field:
+      selector: 'select[name="oro_customer_frontend_owner_select"]'
+
+    Shopping List Product Note:
+      selector: '[name="copy_paste_order"]'
+
+    Customer Shopping lists Grid:
+      selector: 'div[data-page-component-name="customer-shopping-lists-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+
+    Customer User Shopping lists Grid:
+      selector: 'div[data-page-component-name="customer-user-shopping-lists-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+
+  suites:
+    OroShoppingListBundle:
+      contexts:
+        - OroApplicationBundle::CommerceMainContext
+        - OroDataGridBundle::GridContext
+        - OroFormBundle::FormContext
+        - OroProductBundle::FeatureContext
+        - OroProductBundle::FrontendProductGridContext
+        - OroProductBundle::QuickOrderFormContext
+        - OroRedirectBundle::SlugPrototypesContext
+        - OroSEOBundle::FeatureContext
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroWebCatalogBundle::FeatureContext
+        - OroConfigBundle::FeatureContext
+        - OroShoppingListBundle::FeatureContext
+        - OroNavigationBundle::FeatureContext
+        - OroCustomerBundle::ACLContext
+        - OroShoppingListBundle::ShoppingListContext
+        - OroCustomerBundle::RegistrationInstructionFeatureContext
+        - OroLocaleBundle::LocalizationContext
+        - OroFrontendLocalizationBundle::LocalizationSwitcherContext
+        - OroCustomerBundle::CustomerUserContext
+        - OroCheckoutBundle::FeatureContext
+      paths:
+        - '@OroShoppingListBundle/Tests/Behat/Features'

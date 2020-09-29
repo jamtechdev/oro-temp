@@ -1,0 +1,92 @@
+<?php
+
+namespace Oro\Bundle\TestFrameworkBundle\Test\DataFixtures;
+
+use Fidry\AliceDataFixtures\LoaderInterface;
+use Fidry\AliceDataFixtures\Persistence\PurgeMode;
+use Symfony\Component\Config\FileLocator;
+
+/**
+ * Aware about loaded objects.
+ */
+class AliceFixtureLoader implements LoaderInterface
+{
+    /** @var LoaderInterface */
+    protected $loader;
+
+    /** @var Collection */
+    protected $referenceRepository;
+
+    /** @var FileLocator */
+    protected $fileLocator;
+
+    /**
+     * @param LoaderInterface $loader
+     * @param FileLocator $fileLocator
+     */
+    public function __construct(LoaderInterface $loader, FileLocator $fileLocator)
+    {
+        $this->loader = $loader;
+        $this->fileLocator = $fileLocator;
+        $this->referenceRepository = new Collection();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getReferenceRepository(): Collection
+    {
+        return $this->referenceRepository;
+    }
+
+    /**
+     * @param array $references
+     */
+    protected function setReferences(array $references): void
+    {
+        $this->referenceRepository->clear();
+        foreach ($references as $key => $object) {
+            $this->referenceRepository->set($key, $object);
+        }
+    }
+
+    /**
+     * @param array $dataOrFiles
+     * @param array $parameters
+     * @param array $objects
+     * @param PurgeMode|null $purgeMode
+     * @return object[]
+     */
+    public function load(
+        array $dataOrFiles,
+        array $parameters = [],
+        array $objects = [],
+        PurgeMode $purgeMode = null
+    ): array {
+        $objects = $this->loader->load(
+            $dataOrFiles,
+            $parameters,
+            \array_merge($this->referenceRepository->toArray(), $objects)
+        );
+
+        $added = \array_filter(
+            $objects,
+            function ($object) {
+                return !$this->referenceRepository->contains($object);
+            }
+        );
+
+        $this->setReferences($objects);
+
+        return $added;
+    }
+
+    /**
+     * @param string $file
+     * @return string Full path to file
+     */
+    public function locateFile(string $file)
+    {
+        return $this->fileLocator->locate($file);
+    }
+}

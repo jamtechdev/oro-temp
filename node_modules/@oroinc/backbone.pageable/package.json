@@ -1,0 +1,27 @@
+{
+  "name": "@oroinc/backbone.pageable",
+  "version": "1.2.3",
+  "description": "A pageable Backbone.Collection superset. Supports server-side/client-side/infinite pagination and sorting.",
+  "main": "lib/backbone-pageable.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wyuenho/backbone-pageable.git"
+  },
+  "keywords": [
+    "backbone"
+  ],
+  "author": "Jimmy Yuen Ho Wong <wyuenho@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.rst",
+  "dependencies": {
+    "underscore": "~1.4.0",
+    "backbone": ">=0.9.9 < 1.0.0 || >= 1.0.1"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@oroinc/backbone.pageable/-/backbone.pageable-1.2.3.tgz"
+,"_integrity": "sha512-HCJssGAtINpdVy5mdTyTCQvvRWHXeJ9cX5ETpiYn5/DubAghDCaD/qFn0ymiWunOakTfh0u8v5nOIdpvM3FbCA=="
+,"_from": "@oroinc/backbone.pageable@1.2.3"
+}

@@ -1,0 +1,16 @@
+oro_behat_extension:
+    suites:
+        OroContactUsBridgeBundle:
+            contexts:
+                - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+                - OroDataGridBundle::GridContext
+                - Oro\Bundle\ConfigBundle\Tests\Behat\Context\FeatureContext
+                - Oro\Bundle\ApplicationBundle\Tests\Behat\Context\CommerceMainContext
+                - Oro\Bundle\FormBundle\Tests\Behat\Context\FormContext
+                - OroLocaleBundle::LocalizationContext
+                - OroFrontendLocalizationBundle::LocalizationSwitcherContext
+                - OroFormBundle::FeatureContext
+                - OroWebCatalogBundle::FeatureContext
+                - OroCMSBundle::FeatureContext
+            paths:
+                - '@OroContactUsBridgeBundle/Tests/Behat/Features'

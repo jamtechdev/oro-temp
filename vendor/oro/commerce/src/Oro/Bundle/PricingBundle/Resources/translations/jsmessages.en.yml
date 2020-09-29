@@ -1,0 +1,25 @@
+oro:
+    pricing:
+        filter:
+            product_price:
+                per: '/'
+                units_select.label: Units
+        click_to_select: Click to select price per unit
+        qty: 'qty'
+        unit_price: Unit Price
+        product_prices:
+            price_is_overridden: Price is overridden
+            reset_price: Reset price
+            applicable_from: 'Price is applicable starting from {{ amount }}'
+            your_price: 'Your Price:'
+            listed_price: 'Listed Price:'
+            price_not_found: 'Price for requested quantity is not available'
+            empty_prices: 'Price not available'
+        price:
+            label: Price
+            formatted.unit: '{{ formattedUnit }} ({{ formattedPrice }} Each)'
+            not_available: 'N/A'
+        pricelist.delete.message_default: 'Are you sure you would like to delete the "{{ priceListName }}" price list that is used in system configuration as default?'
+        pricelist.delete.message: 'Are you sure you would like to delete the "{{ priceListName }}" price list?'
+    totals:
+        no_data: No data

@@ -1,0 +1,93 @@
+oro_behat_extension:
+  elements:
+    Send Email Form:
+      selector: "form[name='oro_email_email']"
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+    Share With Form:
+      selector: 'form.oropro_share_form'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Share with:
+            type: 'css'
+            locator: 'input[name="oropro_share_form[entities]"]'
+            element: Select2Share
+    Select Share With Grid:
+      selector: 'div[data-page-component-name="share-with-users-datagrid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+    Shared Grid:
+      selector: 'div[data-page-component-name="shared-datagrid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+    Select2Share:
+      selector: '.select2-offscreen[data-bound-component="oro/select2-share-component"]'
+      class: Oro\Bundle\FormBundle\Tests\Behat\Element\Select2Share
+    Contact Accounts Grid:
+      selector: 'div[data-page-component-name="contact-accounts-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+    Select Contacts Grid:
+      selector: 'div[data-page-component-name="account-contacts-update-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+    Reports to hamburger:
+      selector:
+        locator: '//input[@name="oro_contact_form[reportsTo]"]/../button[contains(@class,"entity-select-btn")]'
+        type: xpath
+    Reports to create new:
+      selector:
+        locator: '//input[@name="oro_contact_form[reportsTo]"]/../button[contains(@class,"entity-create-btn")]'
+        type: xpath
+    Create Contact Modal Form:
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      selector: 'div.ui-dialog form[name="oro_contact_form"]'
+    Select Contact Paginator:
+      selector: 'div[data-page-component-name="contacts-select-grid"] div.toolbar div.pagination'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridPaginator
+    Select Contact:
+      selector: 'div[data-page-component-name="contacts-select-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+      options:
+        mapping:
+          GridToolbarPaginator: 'Select Contact Paginator'
+    Contacts Grid:
+      selector: 'div[data-page-component-name="contacts-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+    Add Context Contact Grid Paginator:
+      selector: 'div[data-page-component-name="contacts-for-context-grid"] div.toolbar div.pagination'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridPaginator
+    Add Context Contact Grid:
+      selector: 'div[data-page-component-name="contacts-for-context-grid"]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+      options:
+        mapping:
+          GridToolbarPaginator: 'Add Context Contact Grid Paginator'
+    Add Context Contact GridFilters:
+      selector: 'div[data-page-component-name="contacts-for-context-grid"] div.filter-box'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilters
+    Disabled Use as Identity Field:
+      selector:
+        locator: '//div[contains(@id,"oro_entity_config_type_importexport_identity") and contains(@class,"disabled")]'
+        type: xpath
+
+  suites:
+    OroContactBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\FixturesContext
+        - Oro\Bundle\AccountBundle\Tests\Behat\Context\FeatureContext
+        - OroQueryDesignerBundle::QueryDesignerContext
+        - OroFormBundle::FormContext
+        - OroDataGridBundle::GridContext
+        - OroSecurityBundle::ACLContext
+        - OroAddressBundle::AddressContext
+        - OroImportExportBundle::ImportExportContext:
+            - '@oro_entity.entity_alias_resolver'
+            - '@oro_importexport.processor.registry'
+        - OroEmailBundle::EmailContext
+        - OroContactBundle::FeatureContext
+        - OroActivityListBundle::ActivityContext
+        - OroUIBundle::ContextSelectorContext
+        - OroConfigBundle::FeatureContext
+        - OroNavigationBundle::FeatureContext
+        - OroLocaleBundle::LocalizationContext
+        - OroNavigationBundle::TabContext
+      paths:
+        - '@OroContactBundle/Tests/Behat/Features'

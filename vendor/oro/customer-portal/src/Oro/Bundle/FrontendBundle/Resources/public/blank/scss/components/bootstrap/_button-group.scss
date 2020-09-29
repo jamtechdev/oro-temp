@@ -1,0 +1,17 @@
+/* @theme: blank; */
+
+@import "npmassets/bootstrap/scss/button-group";
+
+.btn-group {
+    &--flex {
+        display: flex;
+    }
+
+    &--block {
+        display: block;
+    }
+
+    &--full {
+        width: 100%;
+    }
+}

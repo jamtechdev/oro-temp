@@ -1,0 +1,12 @@
+security:
+    firewalls:
+        wsse_secured:
+            pattern: ^/api/rest.*
+            provider: oro_user
+            stateless:  true
+            wsse:
+                lifetime: 3600
+                realm:    "Secured API"
+                profile:  "UsernameToken"
+            context: main
+            logout_on_user_change: true

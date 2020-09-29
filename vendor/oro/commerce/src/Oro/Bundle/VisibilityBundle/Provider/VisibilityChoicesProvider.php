@@ -1,0 +1,100 @@
+<?php
+
+namespace Oro\Bundle\VisibilityBundle\Provider;
+
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Oro\Bundle\CatalogBundle\Entity\Category;
+use Oro\Bundle\ProductBundle\Entity\Product;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
+class VisibilityChoicesProvider
+{
+    /**
+     * @var TranslatorInterface
+     */
+    public $translator;
+
+    /**
+     * @var Registry
+     */
+    public $registry;
+
+    /**
+     * @param TranslatorInterface $translator
+     * @param Registry $registry
+     */
+    public function __construct(TranslatorInterface $translator, Registry $registry)
+    {
+        $this->translator = $translator;
+        $this->registry = $registry;
+    }
+
+    /**
+     * @param string $sourceClass
+     * @param object $target
+     * @return array
+     */
+    public function getFormattedChoices($sourceClass, $target)
+    {
+        $choices = $this->getChoices($sourceClass, $target);
+
+        $sourceClassReflection = new \ReflectionClass($sourceClass);
+        $className = strtolower($sourceClassReflection->getShortName());
+        $translationPattern = 'oro.visibility.' . $className . '.choice.%s';
+
+        return $this->formatChoices($translationPattern, $choices);
+    }
+
+    /**
+     * @param string $sourceClass
+     * @param object $target
+     * @return array
+     */
+    public function getChoices($sourceClass, $target)
+    {
+        $choices = call_user_func([$sourceClass, 'getVisibilityList'], $target);
+
+        if ($target instanceof Product && !$this->getProductCategory($target)) {
+            unset($choices[array_search(constant($sourceClass.'::CATEGORY'), $choices)]);
+            $choices = array_values($choices);
+        }
+
+        return $choices;
+    }
+
+    /**
+     * @param Product $product
+     * @return null|Category
+     */
+    protected function getProductCategory(Product $product)
+    {
+        return $this->registry->getManagerForClass('OroCatalogBundle:Category')
+            ->getRepository('OroCatalogBundle:Category')
+            ->findOneByProduct($product);
+    }
+
+    /**
+     * @param string $translationPattern
+     * @param array $choices
+     * @return array
+     */
+    public function formatChoices($translationPattern, $choices)
+    {
+        $result = [];
+        foreach ($choices as $choice) {
+            $result[$this->format($translationPattern, $choice)] = $choice;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $translationPattern
+     * @param string $choice
+     * @return string
+     */
+    public function format($translationPattern, $choice)
+    {
+        return $this->translator->trans(sprintf($translationPattern, $choice));
+    }
+}

@@ -1,0 +1,106 @@
+{% block _checkout_additional_options_widget %}
+    {% set attr = layout_attr_defaults(attr, {
+        'data-page-component-collapse': { storageKey: id }|json_encode,
+        '~class': " collapse-view order-review-options__wrapper"
+    }) %}
+    <div {{ block('block_attributes') }}>
+        <span class="collapse-view__trigger collapse-view__trigger--icon" data-collapse-trigger>
+            <span class="collapse-view__trigger-icon fa-caret-right" aria-hidden="true"></span>
+        </span>
+        <a href="#" class="collapse-view__trigger" data-collapse-trigger>
+            {{ 'oro.checkout.workflow.order_options.label'|trans }}
+        </a>
+        <div class="order-review-options collapse-view__container" data-collapse-container>
+            <div class="grid__row">
+                <fieldset class="grid__column grid__column--6">
+                    <label class="label label--full">{{ "oro.checkout.order_review.shipping_date"|trans }}</label>
+                    <div class="checkout-form__datepicker datepicker-box">
+                        <span class="datepicker-box__icon"><i class="fa-calendar"></i></span>
+                        {{ form_widget(form.ship_until) }}
+                    </div>
+                </fieldset>
+                <fieldset class="grid__column grid__column--6">
+                    <label class="label label--full">{{ "oro.checkout.order_review.po_number"|trans }}</label>
+                    <div class="checkout-form__optional-ref-number">
+                        {{ form_widget(form.po_number, {'attr': {
+                            'placeholder': 'oro.checkout.order_review.po_number_placeholder'|trans,
+                            'data-validation': { Length: {max: 255} }|json_encode
+                        }}) }}
+                    </div>
+                </fieldset>
+            </div>
+            <fieldset class="grid__row grid__row--offset-none">
+                <div class="grid__column grid__column--12">
+                    <label class="label label--full">{{ "oro.checkout.order_review.note"|trans }}</label>
+                    <div class="checkout-form__order-notes">
+                        {{ form_widget(form.customer_notes, {'attr': {
+                            'placeholder': 'oro.checkout.order_review.note_placeholder'|trans,
+                            'data-page-component-elastic-area': ''
+                        }}) }}
+                    </div>
+                </div>
+            </fieldset>
+
+            {% if workflowItem.data.get('allow_manual_source_remove') %}
+                {% set removeElementOptions = {} %}
+                {% set removeLabel = workflowItem.data.get('source_remove_label')|trans %}
+                {% if removeLabel %}
+                    {% set removeElementOptions = removeElementOptions|merge({label: removeLabel}) %}
+                {% endif %}
+                <fieldset class="grid__row grid__row--offset-none">
+                    <div class="grid__column grid__column--6">
+                        {{ form_row(form.remove_source, removeElementOptions) }}
+                    </div>
+                </fieldset>
+            {% endif %}
+            {% if form.state_token is defined %}
+                {{ form_row(form.state_token) }}
+            {% endif %}
+
+            {% if feature_enabled('checkout_customer_users_registration') and
+                checkout.registeredCustomerUser == null and
+                checkout.customerUser.isGuest
+            %}
+                <fieldset class="grid__row grid__row--offset-none"
+                  data-page-component-module="oroui/js/app/components/view-component"
+                  data-page-component-options="{{ {
+                      view: 'orocheckout/js/app/views/late-checkout-registration-view',
+                      selectors: {
+                          switcher: '#' ~ form.late_registration.offsetGet('is_late_registration_enabled').vars.id,
+                          fieldsContainer: '#checkout-late-registration-fields'
+                      }
+                  }|json_encode }}">
+                    <div class="grid__column grid__column--6">
+                        <div id="checkout-late-registration-toggler">
+                            <div class="form-row">
+                                {{ form_row(form.late_registration.offsetGet('is_late_registration_enabled')) }}
+                            </div>
+                        </div>
+                        <div id="checkout-late-registration-fields">
+                            {{ form_widget(form.late_registration) }}
+                        </div>
+                    </div>
+                </fieldset>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _checkout_form_fields_widget -%}
+    {{ block_widget(block) }}
+{%- endblock %}
+
+{% block _checkout_information_body_widget %}
+    {% set attr = layout_attr_defaults(attr, {
+        '~class': " checkout__body--offset-none"
+    }) %}
+    {{ parent_block_widget(block) }}
+{% endblock %}
+
+{% block _payment_additional_data_widget %}
+    {% if options.views[options.payment_method] is defined %}
+        {% set view = options.views[options.payment_method] %}
+        {{ parent_block_widget(block) }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+services:
+    oro_message_queue.mock_lifecycle_message.cache:
+      # This service marked as public (origin private) for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
+        public: true
+        parent: oro.cache.abstract
+        calls:
+            - [ setNamespace, [ 'oro_behat_mesage_queue_mock_lifecycle_message' ] ]
+
+    oro_message_queue.client.mock_lifecycle_message_producer:
+        class: Oro\Bundle\MessageQueueBundle\Tests\Behat\Mock\Client\MockLifecycleMessageProducer
+        public: false
+        decorates: oro_message_queue.client.message_producer
+        decoration_priority: -254
+        arguments:
+            - '@oro_message_queue.client.mock_lifecycle_message_producer.inner'
+            - '@oro_message_queue.mock_lifecycle_message.cache'
+
+    oro_message_queue.client.mock_lifecycle_message_extension:
+        class: Oro\Bundle\MessageQueueBundle\Tests\Behat\Mock\Client\ConsumptionExtension\MockLifecycleMessageExtension
+        public: false
+        arguments:
+            - '@oro_message_queue.client.config'
+            - '@oro_message_queue.mock_lifecycle_message.cache'
+        tags:
+            - { name: 'oro_message_queue.consumption.extension', persistent: true }

@@ -1,0 +1,115 @@
+oro_behat_extension:
+  suites:
+    OroUIBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroUIBundle::DragAndDropContext
+        - OroFormBundle::FormContext
+        - OroDataGridBundle::GridContext
+      paths:
+        - '@OroUIBundle/Tests/Behat/Features'
+
+  elements:
+    Sidebar:
+      selector: '.content-with-sidebar--sidebar'
+
+    Closed Sidebar:
+      selector: '.content-sidebar-minimized'
+
+    Sidebar Drag Handler:
+      selector: '.ui-resizable-handle.ui-resizable-e.resizable-area'
+
+    Not Resizable Sidebar:
+     selector: '.content-with-sidebar--sidebar.ui-resizable-disabled'
+
+    Close Sidebar Trigger:
+      selector: 'div[data-role="sidebar-minimize"]'
+
+    Open Sidebar Trigger:
+      selector: 'div[data-role="sidebar-maximize"]'
+
+    Page:
+      selector:
+        type: xpath
+        locator: '//html'
+
+    Link:
+      selector: 'a'
+
+    Entity Status:
+      selector: '.badge'
+      class: Oro\Bundle\UIBundle\Tests\Behat\Element\EntityStatus
+
+    Breadcrumb Container:
+      selector: 'ul.breadcrumb'
+
+    Page Title:
+      selector: '.page-title'
+
+    Entity Edit Button:
+      selector: 'a.edit-button'
+
+    Entity Delete Button:
+      selector: 'a.edit-remove'
+
+    Flash Message:
+      selector: '#flash-messages div.alert'
+
+    Flash Message Close Button:
+      selector: '#flash-messages div.alert .notification-flash__close'
+
+    ControlGroup:
+      class: Oro\Bundle\UIBundle\Tests\Behat\Element\ControlGroup
+
+    UiDialog:
+      selector: 'div.ui-dialog'
+      class: Oro\Bundle\UIBundle\Tests\Behat\Element\UiDialog
+
+    UiDialog Title:
+      selector: 'span.ui-dialog-title'
+
+    UiDialog Content:
+      selector: 'div.ui-dialog-content'
+
+    UiDialog okButton:
+      selector: 'div.ui-dialog-buttonpane button[type=submit]'
+
+    UiDialog cancelButton:
+      selector: 'div.ui-dialog-buttonpane button[type=reset]'
+
+    UiDialog Disabled okButton:
+      selector: 'div.ui-dialog-buttonpane button.disabled[type=submit]'
+
+    UiWindow:
+      selector: 'div.modal'
+
+    UiWindow Title:
+      selector: 'div.modal-header h3, div.modal-dialog__body h2.page-title'
+
+    UiWindow Content:
+      selector: 'div.modal-body, div.modal-dialog__body'
+
+    UiWindow okButton:
+      selector: 'div.modal-footer .ok, div.buttons-equal button.ok'
+
+    UiWindow cancelButton:
+      selector: 'div.modal-footer .cancel, div.buttons-equal button.cancel'
+
+    ContextSelector:
+      selector:
+        type: xpath
+        locator: '//div[contains(@class, "ui-dialog")]/div[contains(@class, "widget-content")]/div[contains(@class, "dropdown")]'
+      class: Oro\Bundle\UIBundle\Tests\Behat\Element\ContextSelector
+
+    Application Settings Form:
+      selector: 'form[id^="application_settings"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Application URL: 'application_settings[oro_ui___application_url][value]'
+
+    Alert Error Message:
+      selector: '.alert-error .message'
+
+    TypeaheadSuggestionsDropdown:
+      selector: '.typeahead.dropdown-menu'

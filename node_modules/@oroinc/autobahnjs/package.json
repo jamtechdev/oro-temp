@@ -1,0 +1,27 @@
+{
+  "name": "@oroinc/autobahnjs",
+  "version": "0.8.0",
+  "description": "AutobahnJS is a JavaScript client library that implements The WebSocket Application Messaging Protocol (WAMP)",
+  "main": "autobahn/autobahn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crossbario/autobahn-js.git"
+  },
+  "keywords": [
+    "autobahn",
+    "wamp"
+  ],
+  "author": "crossbario",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crossbario/autobahn-js/issues"
+  },
+  "homepage": "https://github.com/crossbario/autobahn-js#readme"
+
+,"_resolved": "https://registry.npmjs.org/@oroinc/autobahnjs/-/autobahnjs-0.8.0.tgz"
+,"_integrity": "sha512-oDef6KkE5Ir8ljtxxk6CcR8y3Rps6LkH/9pgGpc74UwsdiXTGSJP8zsDb4ij69n+Zv590rzVAfPYNTSSDQK2bw=="
+,"_from": "@oroinc/autobahnjs@0.8.0"
+}

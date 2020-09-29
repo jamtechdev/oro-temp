@@ -1,0 +1,56 @@
+oro.cms:
+    wysiwyg:
+        option_panel:
+            show_borders: 'Show Borders'
+            preview: 'Preview'
+            fullscreen: 'Fullscreen'
+            export: 'Export'
+            import: 'Import'
+            undo: 'Undo'
+            redo: 'Redo'
+            clear_canvas: 'Clear Canvas'
+        theme_selector:
+            placeholder: 'Type theme name'
+        exclude_content_block: 'You are trying to add current content block inside itself. Please choose another one'
+        content_block:
+            title: 'Select content block'
+            type: 'Content Block'
+        content_widget:
+            title: 'Select content widget'
+            type: 'Content Widget'
+        digital_asset:
+            image:
+                title: 'Select image'
+            file:
+                title: 'Select file'
+        component:
+            content_block: 'Content Block'
+            content_widget: 'Content Widget'
+            code:
+                label: 'Code'
+                placeholder: 'Type code here'
+            link_button: 'Link Button'
+            table: 'Table'
+            digital_asset:
+                image: 'Image'
+                file: 'File'
+            text_basic: 'Text Section'
+        validation:
+            import: 'Please remove not permitted HTML-tags in the content field: {{ tags }}'
+        import:
+            label: 'Paste here your HTML/CSS and click Import'
+            title: 'Import'
+            button: 'Import'
+        toolbar:
+            selectParent: 'Select Parent'
+            move: 'Move'
+            clone: 'Clone'
+            delete: 'Delete'
+            widgetSetting: 'Widget Settings'
+            blockSetting: 'Block Settings'
+        settings:
+            label: 'Settings'
+    change_type:
+        confirmation:
+            title: 'Change Type'
+            body: 'Are you sure you want to change content widget type?'

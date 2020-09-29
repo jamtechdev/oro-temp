@@ -1,0 +1,41 @@
+/* @theme: admin.oro; */
+// Base file for import of customized bootstrap settings
+
+// Required
+@import "functions";
+@import "variables";
+@import "mixins";
+
+// Optional
+@import "npmassets/bootstrap/scss/root";
+@import "reboot";
+@import "npmassets/bootstrap/scss/type";
+@import "npmassets/bootstrap/scss/images";
+@import "npmassets/bootstrap/scss/code";
+// @import "npmassets/bootstrap/scss/grid";
+// @import "npmassets/bootstrap/scss/tables";
+@import "npmassets/bootstrap/scss/forms";
+@import "buttons";
+@import "npmassets/bootstrap/scss/transitions";
+@import "dropdown";
+@import "button-group";
+@import "npmassets/bootstrap/scss/input-group";
+@import "npmassets/bootstrap/scss/custom-forms";
+@import "npmassets/bootstrap/scss/nav";
+// @import "npmassets/bootstrap/scss/navbar";
+@import "npmassets/bootstrap/scss/card";
+@import "breadcrumb";
+@import "pagination";
+@import "badge";
+@import "alert";
+// @import "npmassets/bootstrap/scss/jumbotron";
+@import "npmassets/bootstrap/scss/progress";
+@import "npmassets/bootstrap/scss/media";
+@import "npmassets/bootstrap/scss/list-group";
+@import "npmassets/bootstrap/scss/close";
+@import "modal";
+@import "npmassets/bootstrap/scss/tooltip";
+@import "popover";
+@import "npmassets/bootstrap/scss/carousel";
+@import "npmassets/bootstrap/scss/utilities";
+@import "npmassets/bootstrap/scss/print";

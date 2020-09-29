@@ -1,0 +1,21 @@
+oro_behat_extension:
+    suites:
+        OroOAuth2ServerBundle:
+            contexts:
+                - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+                - OroFormBundle::FormContext
+                - OroDataGridBundle::GridContext
+                - OroEmailBundle::EmailContext
+                - OroApiBundle::ApiContext
+                - OroFrontendBundle::ApiContext
+            paths:
+                - '@OroOAuth2ServerBundle/Tests/Behat/Features'
+
+    elements:
+        Add OAuth Application:
+            selector:
+                locator: '//div[(contains(@class,"oauth-clients-container"))]//a[contains(text(),"Add Application")]'
+                type: xpath
+        OAuth Applications Grid:
+            selector: '.oauth-clients-container .grid-container'
+            class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid

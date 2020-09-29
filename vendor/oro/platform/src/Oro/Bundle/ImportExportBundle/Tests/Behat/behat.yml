@@ -1,0 +1,37 @@
+oro_behat_extension:
+  elements:
+    ImportFileForm:
+      selector: 'form[name="oro_importexport_import"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+
+    ActiveImportFileField:
+      selector: ".import-widget-content .tab-pane.active input[id^='oro_importexport_import_file']"
+
+    ActiveExportTemplateButton:
+      selector: ".import-widget-content .tab-pane.active .export-tmpl-btn"
+
+    ImportNavTabsContainer:
+      selector: '.import-widget-content .nav-tabs'
+
+    MainImportFileButton:
+      selector: ".import-btn"
+
+    Validate File Button:
+      selector: '[id="validate_import_button"]'
+
+    ImportModalImportFileButton:
+      selector: "#import_button"
+
+    MainExportFileButton:
+      selector: ".export-btn"
+
+    ImportErrors:
+      selector: 'div.import-errors'
+
+    ImportFileFieldValidation:
+      selector:
+        type: 'xpath'
+        locator: "//form[@name='oro_importexport_import_']/span[@class='validation-failed']/span"
+
+    ExportButtonDropdown:
+      selector: '.export-btn + .dropdown-toggle'

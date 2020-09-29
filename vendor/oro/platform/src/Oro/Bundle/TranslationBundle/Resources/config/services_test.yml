@@ -1,0 +1,6 @@
+services:
+    translator.default.stub:
+        class: 'Oro\Bundle\TranslationBundle\Tests\Functional\Stub\TranslatorStub'
+        decorates: 'translator.default'
+        parent: 'translator.default'
+        public: true

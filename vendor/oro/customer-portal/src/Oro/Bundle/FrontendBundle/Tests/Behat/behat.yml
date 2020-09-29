@@ -1,0 +1,109 @@
+oro_behat_extension:
+  suites:
+    OroFrontendBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroConfigBundle::FeatureContext
+        - OroFormBundle::FormContext
+        - OroApplicationBundle::CommerceMainContext
+        - Oro\Bundle\FormBundle\Tests\Behat\Context\FeatureContext
+        - Oro\Bundle\UserBundle\Tests\Behat\Context\FeatureContext
+        - OroDataGridBundle::GridContext
+        - OroCustomerBundle::CustomerUserContext
+        - OroCustomerBundle::ACLContext
+        - OroCustomerBundle::FrontendGridContext
+        - OroSecurityBundle::PermissionContext
+        - OroCustomerBundle::RegistrationInstructionFeatureContext
+        - OroCustomerBundle::CustomerVisitorContext
+      paths:
+        - '@OroFrontendBundle/Tests/Behat/Features'
+  elements:
+    FrontendMainMenu:
+      selector: '[data-main-menu-container]'
+      class: Oro\Bundle\FrontendBundle\Tests\Behat\Element\FrontendMainMenu
+    FrontendMainMenuDropdown:
+      selector: '.main-menu__item--ancestor'
+    Frontend Grid:
+      selector: 'div.oro-datagrid'
+      class: Oro\Bundle\FrontendBundle\Tests\Behat\Element\Grid
+    FrontendGridRow:
+      selector: '.grid-row'
+      class: Oro\Bundle\FrontendBundle\Tests\Behat\Element\GridRow
+    FrontendGridToolbarPaginator:
+      selector: '.oro-items-counter'
+      class: Oro\Bundle\FrontendBundle\Tests\Behat\Element\GridToolbarPaginator
+    FrontendMassActionHeadCheckbox:
+      selector: 'th.select-all-header-cell button'
+    FrontendGridNextPageButton:
+      selector: '.oro-pagination [data-grid-pagination-direction="next"]'
+    FrontendGridPrevPageButton:
+      selector: '.oro-pagination [data-grid-pagination-direction="prev"]'
+    FrontendGridTopToolbar:
+      selector: '[data-grid-toolbar="top"]'
+    FrontendGridBottomToolbar:
+      selector: '[data-grid-toolbar="bottom"]'
+    FrontendGridActionRefreshButton:
+      selector: '.refresh-action'
+    FrontendGridActionResetButton:
+      selector: '.reset-action'
+    FrontendGridActionFilterButton:
+      selector: '.action[title="Filters"]'
+    DetachedSelect2Result:
+      selector: '#select2-drop-mask + .select2-drop .select2-results'
+    Active Sticky Panel:
+      selector: ".sticky-panel.sticky-panel--top.has-content"
+    Main Menu Into Header:
+      selector: ".page-header .header-row"
+    Main Menu Into Sticky Panel:
+      selector: ".sticky-panel.sticky-panel--top.has-content .header-row"
+    Product Filter Into Sticky Panel:
+      selector: ".sticky-panel.sticky-panel--top.has-content .filter-box"
+    Product Filter Into Page Content:
+      selector: ".page-content .filter-box"
+    Header:
+      selector: ".page-header"
+    Copyright:
+      selector: ".copyright"
+    Fullscreen Popup:
+      selector: ".fullscreen-popup"
+    Popup Gallery Widget:
+      selector: ".popup-gallery-widget"
+    Popup Gallery Widget Image:
+      selector: ".popup-gallery-widget img"
+    Popup Gallery Widget Close:
+      selector: ".popup-gallery-widget button[data-trigger-gallery-close]"
+    Filter Settings Form:
+      selector: 'form[name="theme"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Use Default: 'theme[oro_frontend___filter_value_selectors][use_parent_scope_value]'
+          Value Selectors: 'theme[oro_frontend___filter_value_selectors][value]'
+    Filter By Step:
+      selector:
+        locator: '//div[@class="filter-item"]/div[contains(text(), "Filter By Step")]'
+        type: 'xpath'
+    Filter Checkboxes:
+      selector: ".datagrid-manager .ui-multiselect-checkboxes .datagrid-manager__list-item"
+    Filter Checkboxes All At Once:
+      selector: ".datagrid-manager .ui-multiselect-checkboxes .filters-dropdown__items"
+    Filters Dropdown:
+      selector: '[id^="grid-frontend-requests-grid"] a.action[title="Filters"]'
+    Requests For Quote Grid:
+      selector: '[id^="grid-frontend-requests-grid"]'
+      class: Oro\Bundle\FrontendBundle\Tests\Behat\Element\Grid
+    Second Save Button:
+      selector:
+        type: xpath
+        # when should be clicked second button on the page, because it visible after changes on page
+        locator: '(//button[contains(text(), "Save") or contains(text(), "Create")])[2]'
+    Sticky Filters Dropdown:
+      selector: '[data-sticky-name="top-sticky-panel"] a.action[title="Filters"]'
+    Mass Actions Into Sticky Panel:
+      selector: '.sticky-panel.sticky-panel--top.has-content [data-mass-actions-container]'
+    Pegination Into Sticky Panel:
+      selector: '.sticky-panel.sticky-panel--top.has-content [data-grid-pagesize]'
+    Sorting Into Sticky Panel:
+      selector: '.sticky-panel.sticky-panel--top.has-content [data-grid-sorting]'
+    Catalog Switcher Into Sticky Panel:
+      selector: '.sticky-panel.sticky-panel--top.has-content .catalog-switcher'

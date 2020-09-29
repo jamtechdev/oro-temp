@@ -1,0 +1,29 @@
+{
+  "name": "@oroinc/elevatezoom",
+  "version": "3.0.81",
+  "description": "A jQuery image zoom plugin, with tints, easing and gallery integration.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elevateweb/elevatezoom.git"
+  },
+  "keywords": [
+    "zoom",
+    "effects",
+    "elements",
+    "zooming"
+  ],
+  "author": "Andy Eades <http://www.elevateweb.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elevateweb/elevatezoom/issues"
+  },
+  "homepage": "https://github.com/webevt/elevatezoom#readme"
+
+,"_resolved": "https://registry.npmjs.org/@oroinc/elevatezoom/-/elevatezoom-3.0.81.tgz"
+,"_integrity": "sha512-mCO1z1Tg6vaSQRuMJjcV1fZT3N88HkUuOAmR25uTJOQwuevkT+tyH816I/ANQb33mAtva+05Vx5LwI0khuudQg=="
+,"_from": "@oroinc/elevatezoom@3.0.81"
+}

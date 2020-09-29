@@ -1,0 +1,252 @@
+oro_behat_extension:
+  elements:
+    Table:
+      selector: 'table'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Table
+
+    TableHeader:
+      selector: 'thead:nth-child(1)'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\TableHeader
+
+    TableRow:
+      selector: 'tbody tr'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\TableRow
+
+    FirstTableRowColumn:
+      selector: 'tbody tr td:first-child'
+
+    TableRowStrict:
+      selector:
+        type: 'xpath'
+        locator: 'child::tbody/child::tr'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\TableRow
+
+    Grid:
+      selector: 'div.oro-datagrid'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+
+    GridHeader:
+      selector: '.grid-container .grid-header:nth-child(1)'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\TableHeader
+
+    GridRow:
+      selector: 'tbody tr'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridRow
+
+    GridRowStrict:
+      selector:
+        type: 'xpath'
+        locator: "child::tbody/child::tr"
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridRow
+
+    GridTable:
+      selector: '.grid-container table.grid'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Table
+
+    GridRowAction:
+        selector: '.launchers-list a.action'
+
+    GridHeaderLink:
+      selector: 'th a'
+
+    GridFilters:
+      selector: 'div.filter-box'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilters
+
+    GridFiltersState:
+        selector: 'div.filters-state'
+
+    GridFiltersButton:
+      selector: 'div.toolbar div.actions-panel .action[title=Filters]'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFiltersButton
+
+    GridFilterStringItem:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterStringItem
+
+    GridFilterPriceItem:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterPriceItem
+
+    GridFilterChoice:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterChoice
+
+    GridFilterChoiceValueInput:
+      selector: '.value-field-frame .select2-input'
+      class: Oro\Bundle\FormBundle\Tests\Behat\Element\Select2Entities
+
+    GridFilterChoiceTree:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterChoiceTree
+
+    GridFilterChoiceTreeValueInput:
+      selector: '.select2-choices .select2-input'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\ChoiceTreeInput
+
+    GridFilterItem:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterItem
+
+    FrontendGridFilterHintLabel:
+      selector: 'span.filter-criteria-hint-label'
+
+    FrontendGridFilterHint:
+      selector: 'span.filter-criteria-hint'
+
+    GridFilterHintLabel:
+      selector: 'div.filter-criteria-selector'
+
+    GridFilterDateTimeItem:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterDateTimeItem
+
+    GridColumnManagerButton:
+      selector: 'div.datagrid-settings > a.dropdown-toggle'
+
+    GridColumnManager:
+      selector: 'div.datagrid-settings > .dropdown-menu'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridColumnManager
+
+    GridSettingsManagerClose:
+      selector: 'div.datagrid-settings > .dropdown-menu .close'
+
+    GridColumnManagerTabTitle:
+      selector: 'div.datagrid-settings__wrapper .nav-link:contains("Grid")'
+
+    GridFilterManagerButton:
+      selector: 'div.datagrid-settings__wrapper .nav-link:contains("Filters")'
+
+    GridFilterManager:
+      selector: '.dropdown-menu.show [id*="datagrid-settings-filters"] .datagrid-settings-table'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridFilterManager
+
+    GridColumnManagerTable:
+      selector: '.dropdown-menu.show [id*="datagrid-settings-grid"] div.datagrid-settings-table > div.table-wrapper > table'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Table
+
+    GridFilterManagerTab:
+      selector: '.dropdown-menu.show [id*="datagrid-settings-filters"]'
+
+    MultipleChoice:
+      selector: 'div.filter-item'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\MultipleChoice
+
+    DateTimePicker:
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\DateTimePicker
+
+    DateTimePickerYearSelect:
+      selector: '.ui-datepicker-year'
+      class: Oro\Bundle\FormBundle\Tests\Behat\Element\Select
+
+    DateTimePickerMonthSelect:
+      selector: '.ui-datepicker-month'
+      class: Oro\Bundle\FormBundle\Tests\Behat\Element\Select
+
+    DateTimePickerYearSelect2:
+      selector:
+        locator: '//select[contains(@class,"ui-datepicker-year")]'
+        type: xpath
+
+    DateTimePickerMonthSelect2:
+      selector:
+        locator: '//select[contains(@class,"ui-datepicker-month")]'
+        type: xpath
+
+    TimePicker:
+      selector: 'input.timepicker-input'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\TimePicker
+
+    GridToolbar:
+      selector: 'div.toolbar'
+
+    GridToolbarPaginator:
+      selector: 'div.toolbar div.pagination'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridPaginator
+
+    GridToolbarActions:
+      selector: 'div.toolbar div.actions-panel'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridToolbarActions
+
+    GridToolbarActionRefresh:
+        selector: 'div.toolbar div.actions-panel .refresh-action'
+
+    GridToolbarActionReset:
+        selector: 'div.toolbar div.actions-panel .reset-action'
+
+    GridToolBarTools:
+      selector: 'div.toolbar .grid-toolbar-tools'
+      class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\GridToolBarTools
+
+    GridRowActionMenu:
+      selector: '.dropdown-menu__action-cell.show'
+
+    GridMassActionMenu:
+      selector: '.dropdown-menu.show'
+
+    GridMassCheckMenu:
+      selector: '.dropdown-menu.show'
+
+    MassActionHeadCheckbox:
+      selector: 'th.grid-header-cell-massAction div.btn-group .icon'
+
+    MassActionButton:
+      selector: '.grid-header-row .action-column .dropdown button'
+
+    PageSize:
+      selector: 'div.page-size'
+
+    Modal:
+      selector: 'div.modal'
+
+    GridViewList:
+      selector: '.grid-views .views-group, .grid-views .grid-views__header'
+
+    GridViewOptions:
+      selector: '.grid-views .actions-group'
+
+    GridViewOptionsLink:
+      selector: '.grid-views .btn:contains("Options")'
+
+    Account Mobile Button:
+      selector:
+        type: xpath
+        locator: '//*[contains(@data-sticky-target,"top-sticky-panel")]/descendant::button[contains(@class,"hidden-on-desktop")]/descendant::span[contains(@class,"fa-user")]/ancestor::button'
+
+    Manage Grid Fullscreen Popup:
+      selector: '.fullscreen-popup .datagrid-manager'
+
+    Select All Button:
+      selector: 'a[data-role="datagrid-settings-select-all"]'
+
+    Deselect All Button:
+      selector: 'a[data-role="datagrid-settings-unselect-all"]'
+
+    Email Address Handle:
+      selector:
+        type: xpath
+        locator: '//*[contains(@class, "datagrid-manager-table")]/descendant::span[contains(., "Email Address")]/ancestor::div[contains(@class, "datagrid-manager__container")]/span[contains(@class, "ui-sortable-handle")]'
+
+    First Name Handle:
+      selector:
+        type: xpath
+        locator: '//*[contains(@class, "datagrid-manager-table")]/descendant::span[contains(., "First Name")]/ancestor::div[contains(@class, "datagrid-manager__container")]/span[contains(@class, "ui-sortable-handle")]'
+
+    Last Name In Grid Management:
+      selector:
+        type: xpath
+        locator: '//*[contains(@class, "datagrid-manager-table")]/descendant::span[contains(., "Last Name")]'
+
+    Close Fullscreen Popup:
+      selector: '.fullscreen-popup__close'
+
+  suites:
+    OroDataGridBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroFormBundle::FormContext
+        - OroDataGridBundle::GridContext
+        - OroUIBundle::ContextSelectorContext
+        - OroSecurityBundle::ACLContext
+      paths:
+        - '@OroDataGridBundle/Tests/Behat/Features'

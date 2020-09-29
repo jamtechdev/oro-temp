@@ -1,0 +1,130 @@
+oro_behat_extension:
+  elements:
+    MainMenu:
+      selector: 'nav#main-menu'
+      class: Oro\Bundle\NavigationBundle\Tests\Behat\Element\MainMenu
+
+    SideMenuOverlay:
+      selector: 'div.side-menu-overlay'
+
+    SideMenuOverlayCloseButton:
+      selector: 'div.side-menu-overlay button[data-role="overlay-close"]'
+
+    MenuSearch:
+      selector: 'input.side-menu-overlay__field'
+      class: Oro\Bundle\NavigationBundle\Tests\Behat\Element\MainMenu
+
+    MainMenuDropdown:
+      selector: '.dropdown-menu'
+
+    Main Menu Toggler:
+      selector: "#main-menu-toggler"
+
+    PinBarLink:
+      selector: '#pinbar div.list-bar .pin-holder a'
+
+    PinPageButton:
+      selector: 'button[title="Pin/unpin the page"]'
+      class: Oro\Bundle\NavigationBundle\Tests\Behat\Element\PinPageButton
+
+    AddToFavoritesButton:
+      selector: 'button.favorite-button'
+
+    History Content:
+      selector: '#history-content'
+
+    Most Viewed Content:
+      selector: '#mostviewed-content'
+
+    Favorites Content:
+      selector: '#favorite-content'
+
+    QuickMenuContentItem:
+      selector: 'ul li'
+
+    Next Paginator Button:
+      selector:
+        type: xpath
+        locator: '//li/a[contains (@href,"/admin/entity-pagination/next")]'
+
+    Previous Paginator Button:
+      selector:
+        type: xpath
+        locator: '//li/a[contains (@href,"/admin/entity-pagination/previous")]'
+
+    MenuTree:
+      selector: 'div.jstree-wrapper'
+
+    Menu Form Title Fallbacks:
+      selector:
+        type: xpath
+        locator: '(//button[contains(@class, "fallback-status")])[1]'
+
+    Menu Form:
+      selector: 'form[name="menu_update"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Title: 'menu_update[titles][values][default]'
+          Title First: 'menu_update[titles][values][localizations][1][value]'
+          Title First Use Fallback: 'menu_update[titles][values][localizations][1][use_fallback]'
+          Title First Fallback: 'menu_update[titles][values][localizations][1][fallback]'
+          Title Second: 'menu_update[titles][values][localizations][2][value]'
+          Title Second Use Fallback: 'menu_update[titles][values][localizations][2][use_fallback]'
+          Title Second Fallback: 'menu_update[titles][values][localizations][2][fallback]'
+          Title Third: 'menu_update[titles][values][localizations][3][value]'
+          Title Third Use Fallback: 'menu_update[titles][values][localizations][3][use_fallback]'
+          Title Third Fallback: 'menu_update[titles][values][localizations][3][fallback]'
+          URI: 'menu_update[uri]'
+          Icon: 'menu_update[icon]'
+          Description: 'menu_update[descriptions][values][default]'
+
+    Application menu item:
+      selector: '#application_menu_anchor'
+
+    Dashboards menu item:
+      selector: '#dashboard_tab_anchor'
+
+    Dashboards sub item:
+      selector: '#1_dashboard_menu_item_anchor'
+
+    Manage Dashboards sub item:
+      selector: '#oro_dashboard_index_anchor'
+
+    Create Menu Item DropDown:
+      selector: '.navigation .pull-right.pinned-dropdown .btn-primary.dropdown-toggle'
+
+    JS Tree item:
+      selector: '.jstree-wrapper .jstree-container-ul .jstree-anchor'
+
+    Scrollspy Link:
+      selector:
+        locator: '//div[contains(@class,"scrollspy-nav")]/nav/a'
+        type: xpath
+
+    Tab Link:
+      selector:
+        locator: '//ul[contains(@class,"nav-tabs")]/li/a'
+        type: xpath
+
+  pages:
+    Shortcut Actionslist:
+      class: Oro\Bundle\NavigationBundle\Tests\Behat\Page\ShortcutActionslist
+      route: 'oro_shortcut_actionslist'
+    Menus:
+      class: Oro\Bundle\NavigationBundle\Tests\Behat\Page\Menus
+      route: 'oro_navigation_global_menu_index'
+
+  suites:
+    OroNavigationBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\FixturesContext
+        - OroDataGridBundle::GridContext
+        - OroNavigationBundle::FeatureContext
+        - OroNavigationBundle::PinbarContext
+        - OroFormBundle::FormContext
+        - OroConfigBundle::FeatureContext
+        - OroUIBundle::BreadcrumbContext
+      paths:
+        - '@OroNavigationBundle/Tests/Behat/Features'

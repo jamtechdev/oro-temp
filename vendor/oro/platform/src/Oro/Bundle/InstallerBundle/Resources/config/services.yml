@@ -1,0 +1,20 @@
+services:
+    oro_installer.yaml_persister:
+        class: Oro\Bundle\InstallerBundle\Persister\YamlPersister
+        arguments:
+            - '%kernel.project_dir%/config'
+            - '%kernel.environment%'
+
+    oro_installer.script_manager:
+        class: Oro\Bundle\InstallerBundle\ScriptManager
+        arguments:
+            - '@kernel'
+
+    oro_installer.assets_install_command_listener:
+        class: Oro\Bundle\InstallerBundle\EventListener\AssetsInstallCommandListener
+        arguments:
+            - '@filesystem'
+            - '%kernel.project_dir%'
+        tags:
+            - { name: kernel.event_listener, event: console.command, method: beforeExecute }
+            - { name: kernel.event_listener, event: console.terminate, method: afterExecute }
